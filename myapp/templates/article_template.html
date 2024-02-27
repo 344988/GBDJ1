@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<h1>{{ article.title }}</h1>
+<p>{{ article.text }}</p>
 
-</body>
-</html>
+<h2>Комментарии:</h2>
+{% for comment in article.comments.all %}
+    <p>{{ comment.text }} - <b>{{ comment.author }}</b> ({{ comment.updated_at }}) {% if comment.is_modified %} Изменено {% endif %}</p>
+{% endfor %}
+
+<h3>Оставить комментарий:</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить</button>
+</form>

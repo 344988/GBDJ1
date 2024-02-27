@@ -18,6 +18,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.IntegerField()
     date_added = models.DateTimeField(auto_now_add=True)
+    photo = models.ImageField(upload_to='product_photos/', default='path/to/default/image.jpg')
 
     @classmethod
     def create(cls, name, description, price, quantity):
@@ -59,3 +60,27 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order {self.id} by {self.customer.name}"
+
+
+class Article(models.Model):
+
+    title = models.CharField(max_length=200)
+    text = models.TextField()
+    # Дополнительные поля, например, дата публикации, автор и т.д.
+
+    def __str__(self):
+        return self.title
+
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    author = models.CharField(max_length=100)
+    text = models.TextField()
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def is_modified(self):
+        return self.created_at != self.updated_at
+
+    def __str__(self):
+        return f"Comment by {self.author} on {self.article}"
