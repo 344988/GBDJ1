@@ -6,6 +6,7 @@ from datetime import timedelta
 from .models import Order
 from .forms import CommentForm
 from .forms import ProductForm
+from .models import Product
 
 logger = logging.getLogger(__name__)
 
@@ -58,3 +59,8 @@ def add_product(request):
         form = ProductForm()
 
     return render(request, 'your_app/add_product.html', {'form': form})
+
+
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'product_list.html', {'products': products})
