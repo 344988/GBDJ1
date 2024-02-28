@@ -58,7 +58,7 @@ def add_product(request):
     else:
         form = ProductForm()
 
-    return render(request, 'your_app/add_product.html', {'form': form})
+    return render(request, 'add_product.html', {'form': form})
 
 
 def product_list(request):

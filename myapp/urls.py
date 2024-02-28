@@ -5,6 +5,7 @@ from .views import customer_orders_view
 from .views import ordered_products_view
 from .views import add_product
 from .views import product_list
+from django.urls import include
 
 urlpatterns = [
     path('', views.home_view, name='home'),
@@ -15,3 +16,8 @@ urlpatterns = [
     path('add-product/', add_product, name='add-product'),
     path('products/', product_list, name='product-list'),
 ]
+
+import debug_toolbar
+urlpatterns = [
+    #path('__debug__/', include(debug_toolbar.urls)),
+] + urlpatterns
