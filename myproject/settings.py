@@ -35,7 +35,10 @@ ALLOWED_HOSTS = [
 ]
 
 STATIC_ROOT = BASE_DIR / 'static/'
+from dotenv import load_dotenv
 
+project_folder = os.path.expanduser('~/GBDJ1')
+load_dotenv(os.path.join(project_folder, '.env'))
 
 # Application definition
 
