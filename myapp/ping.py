@@ -19,7 +19,7 @@ def ping(address):
     match = re.search('Average = (\d+)ms', output)
     if match:
         latency = int(match.group(1))
-        if latency > 10:
+        if latency > 1000:
             return f"High latency: {latency} ms"
         else:
             return f"Latency OK: {latency} ms"
@@ -27,7 +27,7 @@ def ping(address):
         return "Packet lost"
 
 # Список IP-адресов для мониторинга
-addresses = ['10.61.100.1', '10.61.100.16']
+addresses = ['92.223.4.187', '92.223.36.31']
 
 # Цикл мониторинга
 while True:
@@ -38,4 +38,4 @@ while True:
             log_entry = f"{timestamp} - {address} - {result}\n"
             print(log_entry)
             log_file.write(log_entry)
-    time.sleep(60)  # Пауза между проверками
+    time.sleep(2)  # Пауза между проверками
