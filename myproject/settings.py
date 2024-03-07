@@ -16,7 +16,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
-DEBUG = bool(os.environ.get('DEBUG'))
+DEBUG = bool(os.environ.get('DEBUG4'))
 
 ALLOWED_HOSTS = [
  '127.0.0.1',
